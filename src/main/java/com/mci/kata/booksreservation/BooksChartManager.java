@@ -2,7 +2,6 @@ package com.mci.kata.booksreservation;
 
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +10,8 @@ import java.util.stream.Stream;
 
 public class BooksChartManager implements BooksReservation {
 
-    private static final BigDecimal DISCOUNT_5 = BigDecimal.valueOf(5);
-    private static final BigDecimal DISCOUNT_25 = BigDecimal.valueOf(25);
+    private static final double DISCOUNT_5 = 0.05;
+    private static final double DISCOUNT_25 = 0.25;
 
     private final List<Book> chart = new ArrayList<>();
 
@@ -51,7 +50,7 @@ public class BooksChartManager implements BooksReservation {
 
     private BigDecimal calculateIdenticalBooksPrice(List<Book> books) {
         if (books.size() == 1) {
-            return books.iterator().next().price();
+            return books.getFirst().price();
         }
         BigDecimal netPrice;
         if(books.size() == 2) {
@@ -64,8 +63,8 @@ public class BooksChartManager implements BooksReservation {
         return applyDiscount(netPrice, DISCOUNT_25);
     }
 
-    private static BigDecimal applyDiscount(BigDecimal netPrice, BigDecimal discount) {
-        return netPrice.subtract(discount.multiply(netPrice).divide(BigDecimal.valueOf(100), RoundingMode.DOWN));
+    private static BigDecimal applyDiscount(BigDecimal netPrice, double discount) {
+        return netPrice.subtract(netPrice.multiply(BigDecimal.valueOf(discount)));
     }
 
     private BigDecimal calculateNetPrice(List<Book> books) {

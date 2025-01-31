@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.tuple;
 
 /**
  * Unit test for simple App.
@@ -51,9 +52,9 @@ public class BooksReservationTest {
         // Then
         // check chart details
         assertThat(booksReservation.getChartDetails())
-                .isNotNull()
-                .extracting(ChartDetails::totalPrice)
-                .isEqualTo(BigDecimal.valueOf(8.0));
+                .isNotNull();
+        assertThat(booksReservation.getChartDetails().totalPrice())
+                .isEqualByComparingTo(BigDecimal.valueOf(8.0));
 
         assertThat(booksReservation.getChartDetails().books())
                 .extracting(Book::title, Book::author, Book::releaseYear)
@@ -75,9 +76,9 @@ public class BooksReservationTest {
 
         // Then
         assertThat(booksReservation.getChartDetails())
-                .isNotNull()
-                .extracting(ChartDetails::totalPrice)
-                .isEqualTo(BigDecimal.valueOf(15.2));
+                .isNotNull();
+        assertThat(booksReservation.getChartDetails().totalPrice())
+                .isEqualByComparingTo(BigDecimal.valueOf(15.20));
 
     }
 
@@ -96,9 +97,9 @@ public class BooksReservationTest {
 
         // Then
         assertThat(booksReservation.getChartDetails())
-                .isNotNull()
-                .extracting(ChartDetails::totalPrice)
-                .isEqualTo(BigDecimal.valueOf(18.0));
+                .isNotNull();
+        assertThat(booksReservation.getChartDetails().totalPrice())
+                .isEqualByComparingTo(BigDecimal.valueOf(18.0));
     }
 
     @Test
@@ -118,9 +119,9 @@ public class BooksReservationTest {
 
         // Then
         assertThat(booksReservation.getChartDetails())
-                .isNotNull()
-                .extracting(ChartDetails::totalPrice)
-                .isEqualTo(BigDecimal.valueOf(24.0));
+                .isNotNull();
+        assertThat(booksReservation.getChartDetails().totalPrice())
+                .isEqualByComparingTo(BigDecimal.valueOf(24.0));
     }
 
     @Test
@@ -143,7 +144,7 @@ public class BooksReservationTest {
         // Then
         assertThat(booksReservation.getChartDetails().books().size()).isEqualTo(11);
         assertThat(booksReservation.getChartDetails().totalPrice())
-                .isEqualTo(BigDecimal.valueOf(73.2));
+                .isEqualByComparingTo(BigDecimal.valueOf(73.20));
     }
 
 }
