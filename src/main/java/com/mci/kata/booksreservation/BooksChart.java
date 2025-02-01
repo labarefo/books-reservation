@@ -1,9 +1,6 @@
 package com.mci.kata.booksreservation;
 
-import java.util.List;
-
-public interface BooksReservation {
-    void addBook(Book book);
+public interface BooksChart {
     void addBook(Book book, int quantity);
 
     int getSize();

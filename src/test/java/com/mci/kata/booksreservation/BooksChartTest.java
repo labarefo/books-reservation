@@ -10,16 +10,16 @@ import static org.assertj.core.api.Assertions.tuple;
 /**
  * Unit test for simple App.
  */
-public class BooksReservationTest {
+public class BooksChartTest {
 
     @Test
     public void shouldAddOneBookToChart() {
         // Given
-        BooksReservation booksReservation = new BooksChartManager();
+        BooksChart booksReservation = new BooksChartManager();
         Book book = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
 
         // When
-        booksReservation.addBook(book);
+        booksReservation.addBook(book, 1);
 
         // Then
         assertThat(booksReservation.getSize()).isEqualTo(1);
@@ -28,13 +28,13 @@ public class BooksReservationTest {
     @Test
     public void shouldAddTwoBooksToChart() {
         // Given
-        BooksReservation booksReservation = new BooksChartManager();
+        BooksChart booksReservation = new BooksChartManager();
         Book book1 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
         Book book2 = new Book("2", "The Lord of the Rings", "J.R.R. Tolkien", 1954);
 
         // When
-        booksReservation.addBook(book1);
-        booksReservation.addBook(book2);
+        booksReservation.addBook(book1, 1);
+        booksReservation.addBook(book2, 1);
 
         // Then
         assertThat(booksReservation.getSize()).isEqualTo(2);
@@ -43,11 +43,11 @@ public class BooksReservationTest {
     @Test
     public void shouldGetShouldChartDetails() {
         // Given
-        BooksReservation booksReservation = new BooksChartManager();
+        BooksChart booksReservation = new BooksChartManager();
         Book book1 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
 
         // When
-        booksReservation.addBook(book1);
+        booksReservation.addBook(book1, 1);
 
         // Then
         // check chart details
@@ -66,13 +66,13 @@ public class BooksReservationTest {
     @Test
     public void shouldApplyDiscountToTwoIdenticalBooks() {
         // Given
-        BooksReservation booksReservation = new BooksChartManager();
+        BooksChart booksReservation = new BooksChartManager();
         Book book1 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
         Book book2 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
 
         // When
-        booksReservation.addBook(book1);
-        booksReservation.addBook(book2);
+        booksReservation.addBook(book1, 1);
+        booksReservation.addBook(book2, 1);
 
         // Then
         assertThat(booksReservation.getChartDetails())
@@ -85,15 +85,15 @@ public class BooksReservationTest {
     @Test
     public void shouldApplyDiscountToThreeIdenticalBooks() {
         // Given
-        BooksReservation booksReservation = new BooksChartManager();
+        BooksChart booksReservation = new BooksChartManager();
         Book book1 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
         Book book2 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
         Book book3 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
 
         // When
-        booksReservation.addBook(book1);
-        booksReservation.addBook(book2);
-        booksReservation.addBook(book3);
+        booksReservation.addBook(book1, 1);
+        booksReservation.addBook(book2, 1);
+        booksReservation.addBook(book3, 1);
 
         // Then
         assertThat(booksReservation.getChartDetails())
@@ -105,17 +105,17 @@ public class BooksReservationTest {
     @Test
     public void shouldApplyDiscountToThreeOrMoreIdenticalBooks() {
         // Given
-        BooksReservation booksReservation = new BooksChartManager();
+        BooksChart booksReservation = new BooksChartManager();
         Book book1 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
         Book book2 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
         Book book3 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
         Book book4 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
 
         // When
-        booksReservation.addBook(book1);
-        booksReservation.addBook(book2);
-        booksReservation.addBook(book3);
-        booksReservation.addBook(book4);
+        booksReservation.addBook(book1, 1);
+        booksReservation.addBook(book2, 1);
+        booksReservation.addBook(book3, 1);
+        booksReservation.addBook(book4, 1);
 
         // Then
         assertThat(booksReservation.getChartDetails())
@@ -127,7 +127,7 @@ public class BooksReservationTest {
     @Test
     public void shouldApplyDiscount() {
         // Given
-        BooksReservation booksReservation = new BooksChartManager();
+        BooksChart booksReservation = new BooksChartManager();
         Book book1 = new Book("1", "The Hobbit", "J.R.R. Tolkien", 1937);
         Book book2 = new Book("2", "The Lord of the Rings", "J.R.R. Tolkien", 1954);
         Book book3 = new Book("3", "The Silmarillion", "J.R.R. Tolkien", 1977);
@@ -138,8 +138,8 @@ public class BooksReservationTest {
         booksReservation.addBook(book1, 2);
         booksReservation.addBook(book2, 3);
         booksReservation.addBook(book3, 4);
-        booksReservation.addBook(book4);
-        booksReservation.addBook(book5);
+        booksReservation.addBook(book4, 1);
+        booksReservation.addBook(book5, 1);
 
         // Then
         assertThat(booksReservation.getChartDetails().books().size()).isEqualTo(11);

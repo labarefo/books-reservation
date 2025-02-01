@@ -8,15 +8,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class BooksChartManager implements BooksReservation {
+class BooksChartManager implements BooksChart {
 
     private static final double DISCOUNT_5 = 0.05;
     private static final double DISCOUNT_25 = 0.25;
 
     private final List<Book> chart = new ArrayList<>();
 
-    @Override
-    public void addBook(Book book) {
+    private void put(Book book) {
         chart.add(book);
     }
 
@@ -24,7 +23,7 @@ public class BooksChartManager implements BooksReservation {
     public void addBook(Book book, int quantity) {
         Stream.generate(() -> book)
                 .limit(quantity)
-                .forEach(this::addBook);
+                .forEach(this::put);
     }
 
     @Override
