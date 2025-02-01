@@ -55,11 +55,12 @@ public class BooksChartManager implements BooksReservation {
         BigDecimal netPrice;
         if(books.size() == 2) {
             netPrice = calculateNetPrice(books);
+            // netPrice - netPrice * 0.05
             return applyDiscount(netPrice, DISCOUNT_5);
         }
 
         netPrice = calculateNetPrice(books);
-        // netPrice - 5 * netPrice / 100
+        // netPrice - netPrice * 0.25
         return applyDiscount(netPrice, DISCOUNT_25);
     }
 
